@@ -1,7 +1,24 @@
 import './App.css';
+import { Header } from './components/Header';
+import { SearchBar } from './components/SearchBar';
 
 function App() {
-  return <></>;
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+      <div className="container mx-auto px-4 py-12 max-w-4xl">
+        <Header />
+
+        <SearchBar />
+
+        {/* Welcome State */}
+        <div className="mt-16 text-center">
+          <p className="text-purple-400 text-lg">
+            Enter a city name to get started
+          </p>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default App;
