@@ -1,4 +1,4 @@
-import { Sun } from 'lucide-react';
+import { Cloud, CloudDrizzle, CloudRain, CloudSnow, Sun } from 'lucide-react';
 
 export function ForecastCard() {
   return (
@@ -6,6 +6,10 @@ export function ForecastCard() {
       <p className="text-purple-700 mb-3">Day</p>
       <div className="flex justify-center mb-3">
         <Sun className="w-8 h-8 text-yellow-500" />
+        <Cloud className="w-8 h-8 text-gray-400" />
+        <CloudRain className="w-8 h-8 text-blue-500" />
+        <CloudSnow className="w-8 h-8 text-blue-300" />
+        <CloudDrizzle className="w-8 h-8 text-gray-400" />
       </div>
       <p className="text-purple-900">{30}°</p>
       <p className="text-sm text-purple-600 opacity-80 mt-1">Rainy</p>
