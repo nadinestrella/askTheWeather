@@ -10,7 +10,7 @@ export function SearchBar() {
       </label>
       <button
         type="submit"
-        className="mt-4 w-full bg-gradient-to-r from-purple-400 to-pink-400 text-white py-4 rounded-2xl hover:shadow-lg hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+        className="mt-4 w-full bg-linear-to-r from-purple-400 to-pink-400 text-white py-4 rounded-2xl hover:shadow-lg hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
       >
         Search Weather
       </button>

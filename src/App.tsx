@@ -2,10 +2,11 @@ import { Cloud } from 'lucide-react';
 import './App.css';
 import { Header } from './components/Header';
 import { SearchBar } from './components/SearchBar';
+import { WeatherDisplay } from './components/WeatherDisplay';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+    <div className="min-h-screen bg-linear-to-br from-blue-50 via-purple-50 to-pink-50">
       <div className="container mx-auto px-4 py-12 max-w-4xl">
         <Header />
 
@@ -19,6 +20,7 @@ function App() {
           </p>
         </div>
       </div>
+      <WeatherDisplay />
     </div>
   );
 }
