@@ -5,6 +5,7 @@ interface WeatherDisplayProps {
   mockData: WeatherData;
 }
 export function WeatherDisplay({ mockData }: WeatherDisplayProps) {
+  console.log(mockData);
   return (
     <div className="mt-8 space-y-6">
       {/* Main Weather Card */}
@@ -27,7 +28,9 @@ export function WeatherDisplay({ mockData }: WeatherDisplayProps) {
       <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-lg border border-purple-100">
         <h3 className="text-purple-900 mb-6">5-Day Forecast</h3>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-          <ForecastCard />
+          {mockData.forecast.map((day, index) => (
+            <ForecastCard day={day} index={index} />
+          ))}
         </div>
       </div>
     </div>

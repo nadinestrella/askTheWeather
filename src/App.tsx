@@ -18,7 +18,7 @@ export interface WeatherData {
 }
 
 export interface ForecastDay {
-  day: string;
+  day: any; //string
   temp: number;
   condition: string;
   icon: string;
