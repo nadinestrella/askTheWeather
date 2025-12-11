@@ -25,12 +25,32 @@ export interface ForecastDay {
 }
 
 function App() {
-  const [weatherData, setWeatherData] = useState();
+  // const [weatherData, setWeatherData] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
 
   const handleSearch = () => {
     console.log('estoy buscando');
+  };
+
+  const mockData: WeatherData = {
+    city: 'Madrid',
+    country: 'US',
+    temperature: Math.round(Math.random() * 20 + 10),
+    feelsLike: Math.round(Math.random() * 20 + 10),
+    condition: ['Clear', 'Clouds', 'Rain', 'Snow', 'Mist'][
+      Math.floor(Math.random() * 5)
+    ],
+    humidity: Math.round(Math.random() * 40 + 40),
+    windSpeed: Math.round(Math.random() * 10 + 5),
+    icon: '01d',
+    forecast: [
+      { day: 'Mon', temp: 18, condition: 'Clear', icon: '01d' },
+      { day: 'Tue', temp: 20, condition: 'Clouds', icon: '02d' },
+      { day: 'Wed', temp: 16, condition: 'Rain', icon: '10d' },
+      { day: 'Thu', temp: 19, condition: 'Clear', icon: '01d' },
+      { day: 'Fri', temp: 21, condition: 'Clouds', icon: '02d' },
+    ],
   };
 
   return (
@@ -39,6 +59,22 @@ function App() {
         <Header />
 
         <SearchBar onSearch={handleSearch} loading={loading} />
+        {error && (
+          <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-2xl text-center">
+            <p className="text-red-600">{error}</p>
+          </div>
+        )}
+
+        {/* Weather Display */}
+        {mockData && !loading && <WeatherDisplay mockData={mockData} />}
+
+        {/* Loading State */}
+        {loading && (
+          <div className="mt-8 text-center">
+            <div className="inline-block w-12 h-12 border-4 border-purple-200 border-t-purple-500 rounded-full animate-spin"></div>
+            <p className="mt-4 text-purple-600">Fetching weather data...</p>
+          </div>
+        )}
 
         {/* Welcome State */}
         <div className="mt-16 text-center">
@@ -48,7 +84,6 @@ function App() {
           </p>
         </div>
       </div>
-      <WeatherDisplay />
     </div>
   );
 }
