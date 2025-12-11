@@ -29,12 +29,16 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
 
+  const handleSearch = () => {
+    console.log('estoy buscando');
+  };
+
   return (
     <div className="min-h-screen bg-linear-to-br from-blue-50 via-purple-50 to-pink-50">
       <div className="container mx-auto px-4 py-12 max-w-4xl">
         <Header />
 
-        <SearchBar />
+        <SearchBar onSearch={handleSearch} loading={loading} />
 
         {/* Welcome State */}
         <div className="mt-16 text-center">
