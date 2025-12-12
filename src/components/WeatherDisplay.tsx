@@ -29,7 +29,7 @@ export function WeatherDisplay({ mockData }: WeatherDisplayProps) {
         <h3 className="text-purple-900 mb-6">5-Day Forecast</h3>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
           {mockData.forecast.map((day, index) => (
-            <ForecastCard day={day} index={index} />
+            <ForecastCard day={day} key={index} />
           ))}
         </div>
       </div>
