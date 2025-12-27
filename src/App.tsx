@@ -79,25 +79,7 @@ function App() {
     }
   }
 
-  // const mockData: WeatherData = {
-  //   city: 'Madrid',
-  //   country: 'US',
-  //   temperature: Math.round(Math.random() * 20 + 10),
-  //   feelsLike: Math.round(Math.random() * 20 + 10),
-  //   condition: ['Clear', 'Clouds', 'Rain', 'Snow', 'Mist'][
-  //     Math.floor(Math.random() * 5)
-  //   ],
-  //   humidity: Math.round(Math.random() * 40 + 40),
-  //   windSpeed: Math.round(Math.random() * 10 + 5),
-  //   icon: '01d',
-  //   forecast: [
-  //     { day: 'Mon', temp: 18, condition: 'Clear', icon: '01d' },
-  //     { day: 'Tue', temp: 20, condition: 'Clouds', icon: '02d' },
-  //     { day: 'Wed', temp: 16, condition: 'Rain', icon: '10d' },
-  //     { day: 'Thu', temp: 19, condition: 'Clear', icon: '01d' },
-  //     { day: 'Fri', temp: 21, condition: 'Clouds', icon: '02d' },
-  //   ],
-  // };
+  console.log(weatherData);
 
   console.log(weatherData);
 
