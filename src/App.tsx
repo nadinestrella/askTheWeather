@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { Header } from './components/Header';
 import { SearchBar } from './components/SearchBar';
 import { WeatherDisplay } from './components/WeatherDisplay';
 import { Cloud } from 'lucide-react';
 
 import './App.css';
+import { getWeatherIcon } from './utils/weatherIcons';
 
 export interface WeatherData {
   city: string;
@@ -14,7 +15,7 @@ export interface WeatherData {
   condition: number;
   humidity: number;
   windSpeed: number;
-  icon: string;
+  icon: ReactNode;
   forecast: ForecastDay[];
 }
 
@@ -22,7 +23,7 @@ export interface ForecastDay {
   day: any; //string
   temp: number;
   condition: number;
-  icon: string;
+  icon: ReactNode;
 }
 
 function App() {
@@ -56,10 +57,25 @@ function App() {
       // 2 Find weather
 
       const weatherRes = await fetch(
-        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&hourly=relativehumidity_2m,windspeed_10m`
+        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&daily=weathercode,temperature_2m_max,temperature_2m_min&hourly=relativehumidity_2m,windspeed_10m&timezone=auto`
       );
 
       const weatherData = await weatherRes.json();
+
+      const forecast = weatherData.daily.time
+        .slice(0, 5)
+        .map((date: string, index: number) => ({
+          day: new Date(date).toLocaleDateString('en-US', {
+            weekday: 'short',
+          }),
+          temp: Math.round(
+            (weatherData.daily.temperature_2m_max[index] +
+              weatherData.daily.temperature_2m_min[index]) /
+              2
+          ),
+          condition: weatherData.daily.weathercode[index],
+          icon: getWeatherIcon(weatherData.daily.weathercode[index]),
+        }));
 
       setWeatherData({
         city: name,
@@ -68,9 +84,8 @@ function App() {
         condition: weatherData.current_weather.weathercode,
         humidity: weatherData.hourly.relativehumidity_2m[0],
         windSpeed: weatherData.current_weather.windspeed,
-        icon: '',
-        // icon: getWeatherIcon(weatherData.current_weather.weathercode),
-        forecast: [],
+        icon: getWeatherIcon(weatherData.current_weather.weathercode),
+        forecast,
       });
     } catch (err) {
       setError('Error fetching weather');
@@ -78,8 +93,6 @@ function App() {
       setLoading(false);
     }
   }
-
-  console.log(weatherData);
 
   console.log(weatherData);
 
