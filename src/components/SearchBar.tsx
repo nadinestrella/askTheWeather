@@ -11,6 +11,7 @@ export function SearchBar({ onSearch, loading }: SearchBarProps) {
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     onSearch(city);
+    setCity('');
   };
 
   return (
