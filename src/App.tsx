@@ -11,16 +11,13 @@ export interface WeatherData {
   city: string;
   country: string;
   temperature: number;
-  // feelsLike: number;
   condition: number;
-  humidity: number;
-  windSpeed: number;
   icon: ReactNode;
   forecast: ForecastDay[];
 }
 
 export interface ForecastDay {
-  day: any; //string
+  day: string;
   temp: number;
   condition: number;
   icon: ReactNode;
@@ -84,8 +81,8 @@ function App() {
         country,
         temperature: weatherData.current_weather.temperature,
         condition: weatherData.current_weather.weathercode,
-        humidity: weatherData.hourly.relativehumidity_2m[0],
-        windSpeed: weatherData.current_weather.windspeed,
+        // humidity: weatherData.hourly.relativehumidity_2m[0],
+        // windSpeed: weatherData.current_weather.windspeed,
         icon: getWeatherIcon(weatherData.current_weather.weathercode),
         forecast,
       });

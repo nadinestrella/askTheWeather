@@ -6,7 +6,6 @@ interface WeatherDisplayProps {
   weatherData: WeatherData;
 }
 export function WeatherDisplay({ weatherData }: WeatherDisplayProps) {
-  console.log(weatherData);
   return (
     <div className="mt-8 space-y-6">
       {/* Main Weather Card */}

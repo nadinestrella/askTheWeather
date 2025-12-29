@@ -32,3 +32,5 @@ The user can enter a city, check the weather information, and this is saved in *
 ## 🌍 APIs used
 
 `https://open-meteo.com/en/docs`
+
+## 🧑‍💻 Developed by Nadine Estrella
