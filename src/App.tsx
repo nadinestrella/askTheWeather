@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { Header } from './components/Header';
 import { SearchBar } from './components/SearchBar';
 import { WeatherDisplay } from './components/WeatherDisplay';
@@ -27,12 +27,14 @@ export interface ForecastDay {
 }
 
 function App() {
-  const [weatherData, setWeatherData] = useState<WeatherData>();
+  const [weatherData, setWeatherData] = useState<WeatherData>(() => {
+    const storedData = localStorage.getItem('weatherData');
+    return storedData ? JSON.parse(storedData) : undefined;
+  });
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleSearch = (city: string) => {
-    console.log('estoy buscando');
     searchCity(city);
   };
 
@@ -94,6 +96,14 @@ function App() {
     }
   }
 
+  // Local Storage
+
+  useEffect(() => {
+    if (weatherData) {
+      localStorage.setItem('weatherData', JSON.stringify(weatherData));
+    }
+  }, [weatherData]);
+
   console.log(weatherData);
 
   return (
@@ -122,7 +132,6 @@ function App() {
         )}
 
         {/* Welcome State */}
-
         {!weatherData && !loading && !error && (
           <div className="mt-16 text-center">
             <Cloud className="w-24 h-24 mx-auto text-purple-300 mb-6" />

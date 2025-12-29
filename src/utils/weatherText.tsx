@@ -3,7 +3,7 @@ export const getWeatherText = (code: number) => {
     return <span>Clear</span>;
   }
   if (code <= 2) {
-    return <span>Cloudy</span>;
+    return <span>Clouds</span>;
   }
 
   if (code <= 48) {
@@ -11,12 +11,12 @@ export const getWeatherText = (code: number) => {
   }
 
   if (code <= 67) {
-    return <span>Rainy</span>;
+    return <span>Rain</span>;
   }
 
   if (code <= 77) {
-    return <span>Snowy</span>;
+    return <span>Snow</span>;
   }
 
-  return <span>Cloudy</span>;
+  return <span>Clouds</span>;
 };
