@@ -1,5 +1,6 @@
 import type { ForecastDay } from '../App';
 import { getWeatherIcon } from '../utils/weatherIcons';
+import { getWeatherText } from '../utils/weatherText';
 
 interface ForecastCardProps {
   day: ForecastDay;
@@ -13,7 +14,9 @@ export function ForecastCard({ day }: ForecastCardProps) {
         {getWeatherIcon(day.condition)}
       </div>
       <p className="text-purple-900">{day.temp}°</p>
-      <p className="text-sm text-purple-600 opacity-80 mt-1">{day.condition}</p>
+      <p className="text-sm text-purple-600 opacity-80 mt-1">
+        {getWeatherText(day.condition)}
+      </p>
     </div>
   );
 }
