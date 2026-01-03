@@ -1,11 +1,11 @@
 import { useEffect, useState, type ReactNode } from 'react';
+import { Cloud } from 'lucide-react';
 import { Header } from './components/Header';
 import { SearchBar } from './components/SearchBar';
 import { WeatherDisplay } from './components/WeatherDisplay';
-import { Cloud } from 'lucide-react';
+import { getWeatherIcon } from './utils/weatherIcons';
 
 import './App.css';
-import { getWeatherIcon } from './utils/weatherIcons';
 
 export interface WeatherData {
   city: string;
@@ -100,8 +100,6 @@ function App() {
       localStorage.setItem('weatherData', JSON.stringify(weatherData));
     }
   }, [weatherData]);
-
-  console.log(weatherData);
 
   return (
     <div className="min-h-screen bg-linear-to-br from-blue-50 via-purple-50 to-pink-50">
