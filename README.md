@@ -83,4 +83,4 @@ npm run dev
 http://localhost:5173
 ```
 
-## 🧑‍💻 Developed by Nadine Estrella
+## 👩🏼‍💻 Developed by Nadine Estrella
