@@ -81,8 +81,6 @@ function App() {
         country,
         temperature: weatherData.current_weather.temperature,
         condition: weatherData.current_weather.weathercode,
-        // humidity: weatherData.hourly.relativehumidity_2m[0],
-        // windSpeed: weatherData.current_weather.windspeed,
         icon: getWeatherIcon(weatherData.current_weather.weathercode),
         forecast,
       });
