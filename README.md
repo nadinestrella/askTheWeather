@@ -33,4 +33,54 @@ The user can enter a city, check the weather information, and this is saved in *
 
 `https://open-meteo.com/en/docs`
 
+## Getting Started
+
+This project is publicly available on GitHub and can be run locally by following the steps below.
+
+### Prerequisites
+
+Before running the project, make sure you have the following installed:
+
+- **Node.js** (version 18 or higher recommended)
+- **npm** (comes with Node.js)
+- **Git**
+
+---
+
+### Clone the Repository
+
+Clone the repository from GitHub using the following command:
+
+```bash
+git clone https://github.com/nadinestrella/askTheWeather.git
+```
+
+Then navigate to the project directory:
+
+```bash
+cd askTheWeather
+```
+
+### Install Dependencies
+
+Install all required dependencies by running:
+
+```bash
+npm install
+```
+
+### Run the Project
+
+To start the application in development mode, run:
+
+```bash
+npm run dev
+```
+
+### The application will be available in your browser at:
+
+```bash
+http://localhost:5173
+```
+
 ## 🧑‍💻 Developed by Nadine Estrella
