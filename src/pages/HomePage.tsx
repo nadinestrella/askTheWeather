@@ -3,6 +3,7 @@ import { SearchBar } from '../components/SearchBar';
 import { WeatherDisplay } from '../components/WeatherDisplay';
 import { useEffect, useState, type ReactNode } from 'react';
 import { getWeatherIcon } from '../utils/weatherIcons';
+import { Link } from 'react-router-dom';
 
 export interface WeatherData {
   city: string;
@@ -96,6 +97,12 @@ function HomePage() {
   }, [weatherData]);
   return (
     <div>
+      <Link
+        to="/ia"
+        className="inline-block mt-5 mb-4 px-4 py-2 bg-purple-500 text-white rounded-xl"
+      >
+        IA Page ✨
+      </Link>
       <SearchBar onSearch={handleSearch} loading={loading} />
       {error && (
         <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-2xl text-center">
