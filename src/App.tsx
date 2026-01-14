@@ -1,11 +1,14 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { Cloud } from 'lucide-react';
+import HomePage from './pages/HomePage';
+import Ia from './pages/Ia';
 import { Header } from './components/Header';
 import { SearchBar } from './components/SearchBar';
 import { WeatherDisplay } from './components/WeatherDisplay';
 import { getWeatherIcon } from './utils/weatherIcons';
 
 import './App.css';
+import { Route, Routes } from 'react-router-dom';
 
 export interface WeatherData {
   city: string;
@@ -103,6 +106,10 @@ function App() {
     <div className="min-h-screen bg-linear-to-br from-blue-50 via-purple-50 to-pink-50">
       <div className="container mx-auto px-4 py-12 max-w-4xl">
         <Header />
+        <Routes>
+          <Route path="/" element={<HomePage loading={loading} />} />
+          <Route path="/ia" element={<Ia />} />
+        </Routes>
 
         <SearchBar onSearch={handleSearch} loading={loading} />
         {error && (
