@@ -4,6 +4,8 @@ import { WeatherDisplay } from '../components/WeatherDisplay';
 import { useEffect, useState, type ReactNode } from 'react';
 import { getWeatherIcon } from '../utils/weatherIcons';
 import { Link } from 'react-router-dom';
+import { Loading } from '../components/Loading';
+import { ErrorMessage } from '../components/ErrorMessage';
 
 export interface WeatherData {
   city: string;
@@ -104,22 +106,13 @@ function HomePage() {
         IA Page ✨
       </Link>
       <SearchBar onSearch={handleSearch} loading={loading} />
-      {error && (
-        <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-2xl text-center">
-          <p className="text-red-600">{error}</p>
-        </div>
-      )}
+      {error && <ErrorMessage error={error} />}
 
       {/* Weather Display */}
       {weatherData && !loading && <WeatherDisplay weatherData={weatherData} />}
 
       {/* Loading State */}
-      {loading && (
-        <div className="mt-8 text-center">
-          <div className="inline-block w-12 h-12 border-4 border-purple-200 border-t-purple-500 rounded-full animate-spin"></div>
-          <p className="mt-4 text-purple-600">Fetching weather data...</p>
-        </div>
-      )}
+      {loading && <Loading />}
 
       {/* Welcome State */}
       {!weatherData && !loading && !error && (

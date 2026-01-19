@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
-import Ia from './pages/Ia';
+import AIPage from './pages/AIPage';
 import { Header } from './components/Header';
 
 import './App.css';
@@ -12,7 +12,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/ia" element={<Ia />} />
+          <Route path="/ia" element={<AIPage />} />
         </Routes>
       </div>
     </div>
