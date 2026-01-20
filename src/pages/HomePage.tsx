@@ -12,7 +12,6 @@ export interface WeatherData {
   country: string;
   temperature: number;
   condition: number;
-  icon: ReactNode;
   forecast: ForecastDay[];
 }
 
@@ -81,7 +80,6 @@ function HomePage() {
         country,
         temperature: weatherData.current_weather.temperature,
         condition: weatherData.current_weather.weathercode,
-        icon: getWeatherIcon(weatherData.current_weather.weathercode),
         forecast,
       });
     } catch (err) {
