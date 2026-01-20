@@ -30,7 +30,8 @@ function HomePage() {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleSearch = (city: string) => {
+  const handleCitySearch = (city: string) => {
+    if (!city.trim()) return;
     searchCity(city);
   };
 
@@ -103,7 +104,7 @@ function HomePage() {
       >
         IA Page ✨
       </Link>
-      <SearchBar onSearch={handleSearch} loading={loading} />
+      <SearchBar onSearch={handleCitySearch} loading={loading} />
       {error && <ErrorMessage error={error} />}
 
       {/* Weather Display */}
