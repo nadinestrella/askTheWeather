@@ -1,4 +1,3 @@
-import { Cloud } from 'lucide-react';
 import { SearchBar } from '../components/SearchBar';
 import { WeatherDisplay } from '../components/WeatherDisplay';
 import { useEffect, useState } from 'react';
@@ -6,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Loading } from '../components/Loading';
 import { ErrorMessage } from '../components/ErrorMessage';
+import { WelcomeState } from '../components/WelcomeState';
 
 export interface WeatherData {
   city: string;
@@ -123,23 +123,17 @@ function HomePage() {
         loading={loading}
         buttonText="Search Weather"
       />
-      {error && <ErrorMessage error={error} />}
+      {/* Welcome State */}
+      {!weatherData && !loading && !error && <WelcomeState />}
 
-      {/* Weather Display */}
-      {weatherData && !loading && <WeatherDisplay weatherData={weatherData} />}
+      {/* Error  */}
+      {error && <ErrorMessage error={error} />}
 
       {/* Loading State */}
       {loading && <Loading />}
 
-      {/* Welcome State */}
-      {!weatherData && !loading && !error && (
-        <div className="mt-16 text-center">
-          <Cloud className="w-24 h-24 mx-auto text-purple-300 mb-6" />
-          <p className="text-purple-400 text-lg">
-            Enter a city name to get started
-          </p>
-        </div>
-      )}
+      {/* Weather Display */}
+      {weatherData && !loading && <WeatherDisplay weatherData={weatherData} />}
     </div>
   );
 }

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Loading } from '../components/Loading';
 import { ErrorMessage } from '../components/ErrorMessage';
 import { SearchBar } from '../components/SearchBar';
+import { WelcomeState } from '../components/WelcomeState';
 
 const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
 
@@ -57,15 +58,21 @@ function AIPage() {
         buttonText="✨ Search with AI ✨"
         placeholder="Tell me the weather in..."
       />
+      {/* Welcome State */}
+      {!answer && !loading && !error && <WelcomeState />}
 
+      {/* Error  */}
+      {error && <ErrorMessage error={error} />}
+
+      {/* Loading State */}
+      {loading && <Loading />}
+
+      {/* Answer Display */}
       {answer && (
         <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-lg border border-purple-100 mt-6">
           <h2 className="text-purple-900 mb-2">{answer}</h2>
         </div>
       )}
-      {error && <ErrorMessage error={error} />}
-
-      {loading && <Loading />}
     </div>
   );
 }
