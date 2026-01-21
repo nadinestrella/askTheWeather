@@ -104,7 +104,11 @@ function HomePage() {
       >
         IA Page ✨
       </Link>
-      <SearchBar onSearch={handleCitySearch} loading={loading} />
+      <SearchBar
+        onSearch={handleCitySearch}
+        loading={loading}
+        buttonText="Search Weather"
+      />
       {error && <ErrorMessage error={error} />}
 
       {/* Weather Display */}

@@ -1,23 +1,19 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { ArrowLeft } from 'lucide-react';
-import { useState, type FormEvent } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Loading } from '../components/Loading';
 import { ErrorMessage } from '../components/ErrorMessage';
+import { SearchBar } from '../components/SearchBar';
 
 const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
 
 function AIPage() {
-  const [city, setCity] = useState<string>('');
   const [answer, setAnswer] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = async (
-    event: FormEvent<HTMLFormElement>
-  ): Promise<void> => {
-    event.preventDefault();
-
+  const handleSearchAI = async (city: string): Promise<void> => {
     if (!city.trim()) return;
 
     try {
@@ -52,7 +48,15 @@ function AIPage() {
         <ArrowLeft size={20} />
         Back to Home
       </Link>
-      <form onSubmit={handleSubmit}>
+
+      <SearchBar
+        onSearch={handleSearchAI}
+        loading={loading}
+        buttonText="✨ Search with AI ✨"
+        placeholder="Tell me the weather in..."
+      />
+
+      {/* <form onSubmit={handleSubmit}>
         <label>
           <input
             type="text"
@@ -70,7 +74,7 @@ function AIPage() {
         >
           ✨ Search with AI ✨
         </button>
-      </form>
+      </form> */}
       {answer && (
         <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-lg border border-purple-100 mt-6">
           <h2 className="text-purple-900 mb-2">{answer}</h2>
