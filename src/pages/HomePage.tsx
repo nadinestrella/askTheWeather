@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { Loading } from '../components/Loading';
 import { ErrorMessage } from '../components/ErrorMessage';
 import { WelcomeState } from '../components/WelcomeState';
+import { fetchWeather } from '../services/fetchWeather';
 
 export interface WeatherData {
   city: string;
@@ -42,63 +43,14 @@ function HomePage() {
 
   async function searchCity(city: string) {
     setError(null);
+    setLoading(true);
+    setWeatherData(null);
+
     try {
-      setLoading(true);
-      setWeatherData(null);
-
-      // 1 Find lat/lon by city
-      const geoRes = await fetch(
-        `https://geocoding-api.open-meteo.com/v1/search?name=${city}`
-      );
-
-      if (!geoRes.ok) {
-        setError('Geocoding API error');
-      }
-
-      const geoData = await geoRes.json();
-
-      if (!geoData.results || geoData.results.length === 0) {
-        setError('City not found');
-        return;
-      }
-
-      const { name, country, latitude, longitude } = geoData.results[0];
-
-      // 2 Find weather
-
-      const weatherRes = await fetch(
-        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&daily=weathercode,temperature_2m_max,temperature_2m_min&hourly=relativehumidity_2m,windspeed_10m&timezone=auto`
-      );
-
-      if (!weatherRes.ok) {
-        setError('Weather API error');
-      }
-
-      const weatherData = await weatherRes.json();
-
-      const forecast = weatherData.daily.time
-        .slice(0, 5)
-        .map((date: string, index: number) => ({
-          day: new Date(date).toLocaleDateString('en-US', {
-            weekday: 'short',
-          }),
-          temp: Math.round(
-            (weatherData.daily.temperature_2m_max[index] +
-              weatherData.daily.temperature_2m_min[index]) /
-              2
-          ),
-          condition: weatherData.daily.weathercode[index],
-        }));
-
-      setWeatherData({
-        city: name,
-        country,
-        temperature: weatherData.current_weather.temperature,
-        condition: weatherData.current_weather.weathercode,
-        forecast,
-      });
+      const data = await fetchWeather(city);
+      setWeatherData(data);
     } catch (err) {
-      setError('Error fetching weather. Please try again.');
+      setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {
       setLoading(false);
     }
