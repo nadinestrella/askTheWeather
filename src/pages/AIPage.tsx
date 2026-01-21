@@ -30,10 +30,14 @@ function AIPage() {
 
       const result = await response.generateContent(prompt);
       const text = result.response.text();
-      const cleanText = text.replace(/\*\*/g, '');
-      setAnswer(cleanText);
+      if (!text) {
+        setError('Empty response from AI');
+      }
+      setAnswer(text.replace(/\*\*/g, ''));
+
     } catch (error: unknown) {
       setError('Sorry, I could not get the weather right now');
+      
     } finally {
       setLoading(false);
     }
