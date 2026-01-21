@@ -98,7 +98,7 @@ function HomePage() {
         forecast,
       });
     } catch (err) {
-      setError('Error fetching weather');
+      setError('Error fetching weather. Please try again.');
     } finally {
       setLoading(false);
     }

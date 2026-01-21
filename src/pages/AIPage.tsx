@@ -31,13 +31,11 @@ function AIPage() {
       const result = await response.generateContent(prompt);
       const text = result.response.text();
       if (!text) {
-        setError('Empty response from AI');
+        setError('Empty response from AI. Please try again');
       }
       setAnswer(text.replace(/\*\*/g, ''));
-
     } catch (error: unknown) {
       setError('Sorry, I could not get the weather right now');
-      
     } finally {
       setLoading(false);
     }
