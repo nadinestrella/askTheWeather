@@ -1,8 +1,8 @@
 import { Cloud } from 'lucide-react';
 import { SearchBar } from '../components/SearchBar';
 import { WeatherDisplay } from '../components/WeatherDisplay';
-import { useEffect, useState, type ReactNode } from 'react';
-import { getWeatherIcon } from '../utils/weatherIcons';
+import { useEffect, useState } from 'react';
+
 import { Link } from 'react-router-dom';
 import { Loading } from '../components/Loading';
 import { ErrorMessage } from '../components/ErrorMessage';
@@ -19,7 +19,6 @@ export interface ForecastDay {
   day: string;
   temp: number;
   condition: number;
-  icon: ReactNode;
 }
 
 function HomePage() {
@@ -73,7 +72,6 @@ function HomePage() {
               2
           ),
           condition: weatherData.daily.weathercode[index],
-          icon: getWeatherIcon(weatherData.daily.weathercode[index]),
         }));
 
       setWeatherData({
