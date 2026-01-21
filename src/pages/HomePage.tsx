@@ -51,6 +51,10 @@ function HomePage() {
         `https://geocoding-api.open-meteo.com/v1/search?name=${city}`
       );
 
+      if (!geoRes.ok) {
+        setError('Geocoding API error');
+      }
+
       const geoData = await geoRes.json();
 
       if (!geoData.results || geoData.results.length === 0) {
@@ -65,6 +69,10 @@ function HomePage() {
       const weatherRes = await fetch(
         `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&daily=weathercode,temperature_2m_max,temperature_2m_min&hourly=relativehumidity_2m,windspeed_10m&timezone=auto`
       );
+
+      if (!weatherRes.ok) {
+        setError('Weather API error');
+      }
 
       const weatherData = await weatherRes.json();
 
