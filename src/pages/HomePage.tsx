@@ -22,9 +22,15 @@ export interface ForecastDay {
 }
 
 function HomePage() {
-  const [weatherData, setWeatherData] = useState<WeatherData>(() => {
+  const [weatherData, setWeatherData] = useState<WeatherData | null>(() => {
     const storedData = localStorage.getItem('weatherData');
-    return storedData ? JSON.parse(storedData) : undefined;
+    if (!storedData) return null;
+    try {
+      return JSON.parse(storedData) as WeatherData;
+    } catch {
+      localStorage.removeItem('weatherData');
+      return null;
+    }
   });
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
