@@ -56,25 +56,6 @@ function AIPage() {
         placeholder="Tell me the weather in..."
       />
 
-      {/* <form onSubmit={handleSubmit}>
-        <label>
-          <input
-            type="text"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            placeholder="Tell me the weather in..."
-            className="w-full pl-14 pr-6 py-4 bg-white/70 backdrop-blur-sm border-2 border-purple-200 rounded-2xl focus:outline-none focus:border-purple-400 transition-all placeholder:text-purple-300"
-            disabled={loading}
-          ></input>
-        </label>
-        <button
-          type="submit"
-          disabled={loading}
-          className="mt-4 w-full bg-linear-to-r from-purple-400 to-pink-400 text-white py-4 rounded-2xl hover:shadow-lg hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-        >
-          ✨ Search with AI ✨
-        </button>
-      </form> */}
       {answer && (
         <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-lg border border-purple-100 mt-6">
           <h2 className="text-purple-900 mb-2">{answer}</h2>
