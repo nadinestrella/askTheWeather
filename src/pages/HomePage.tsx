@@ -41,8 +41,10 @@ function HomePage() {
   };
 
   async function searchCity(city: string) {
+    setError(null);
     try {
       setLoading(true);
+      setWeatherData(null);
 
       // 1 Find lat/lon by city
       const geoRes = await fetch(
