@@ -1,26 +1,12 @@
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { fetchWeather } from '../services/fetchWeather';
 import { SearchBar } from '../components/SearchBar';
 import { WeatherDisplay } from '../components/WeatherDisplay';
-import { useEffect, useState } from 'react';
-
-import { Link } from 'react-router-dom';
 import { Loading } from '../components/Loading';
 import { ErrorMessage } from '../components/ErrorMessage';
 import { WelcomeState } from '../components/WelcomeState';
-import { fetchWeather } from '../services/fetchWeather';
-
-export interface WeatherData {
-  city: string;
-  country: string;
-  temperature: number;
-  condition: number;
-  forecast: ForecastDay[];
-}
-
-export interface ForecastDay {
-  day: string;
-  temp: number;
-  condition: number;
-}
+import type { WeatherData } from '../types/weather';
 
 function HomePage() {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(() => {

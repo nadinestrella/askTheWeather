@@ -1,4 +1,4 @@
-import type { WeatherData } from '../pages/HomePage';
+import type { WeatherData } from '../types/weather';
 
 export async function fetchWeather(city: string): Promise<WeatherData> {
   // 1 Find lat/lon by city

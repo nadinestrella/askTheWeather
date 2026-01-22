@@ -1,4 +1,4 @@
-import type { ForecastDay } from '../pages/HomePage';
+import type { ForecastDay } from '../types/weather';
 import { getWeatherIcon } from '../utils/weatherIcons';
 import { getWeatherText } from '../utils/weatherText';
 

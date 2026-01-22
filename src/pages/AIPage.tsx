@@ -1,7 +1,7 @@
-import { GoogleGenerativeAI } from '@google/generative-ai';
-import { ArrowLeft } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { GoogleGenerativeAI } from '@google/generative-ai';
+import { ArrowLeft } from 'lucide-react';
 import { Loading } from '../components/Loading';
 import { ErrorMessage } from '../components/ErrorMessage';
 import { SearchBar } from '../components/SearchBar';

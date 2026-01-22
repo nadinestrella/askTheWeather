@@ -1,4 +1,4 @@
-import type { WeatherData } from '../pages/HomePage';
+import type { WeatherData } from '../types/weather';
 import { getWeatherIcon } from '../utils/weatherIcons';
 import { ForecastCard } from './ForecastCard';
 
