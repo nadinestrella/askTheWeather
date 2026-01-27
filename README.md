@@ -33,6 +33,75 @@ The user can enter a city, check the weather information, and this is saved in *
 
 `https://open-meteo.com/en/docs`
 
+---
+
+## 🤖 AI Weather Assistant (Gemini)
+
+This project integrates Google Gemini to provide an AI-powered weather description for a given city.
+
+When the user searches for a city, in addition to fetching real weather data from the Open-Meteo API, the app can ask Gemini to generate a short, human-friendly sentence describing the current weather.
+
+### How it works
+
+- Uses Google Generative AI (Gemini).
+
+- Sends a prompt like:
+  "Tell me the current weather in Paris. Answer in one short sentence."
+
+- The response is cleaned and displayed in the UI.
+
+- Errors and loading states are handled gracefully.
+
+This feature demonstrates:
+
+- Integration with an external AI service
+
+- Async state handling in React
+
+- Error management for third-party APIs
+
+## 🧪 Testing
+
+The project includes automated tests to ensure reliability and correct behavior.
+
+### Technologies used
+
+- Vitest – test runner
+
+- @testing-library/react – testing React hooks
+
+- jsdom – browser-like environment for tests
+
+- Mocks & spies with vi.mock and vi.spyOn
+
+### What is tested
+
+- fetchWeather service
+  - Returns correct weather data when APIs respond successfully
+
+  - Throws meaningful errors when the city is not found or APIs fail
+
+- useWeather hook
+  - Correctly updates loading, weatherData, and error states
+
+  - Handles successful and failed API calls
+
+  - Works independently from real network requests by mocking services
+
+### Example test scenarios
+
+- Successful weather fetch and state update
+
+- Error handling when the API fails
+
+- Local state isolation between tests
+
+### To run the tests:
+
+```bash
+npm run test
+```
+
 ## Getting Started
 
 This project is publicly available on GitHub and can be run locally by following the steps below.
