@@ -46,7 +46,7 @@ function AIPage() {
     <div>
       <Link
         to="/"
-        className="inline-flex flex-row gap-1 items-center mt-6 mb-4 px-4 py-2  bg-purple-500 text-white rounded-xl "
+        className="inline-flex flex-row gap-1 items-center mt-5 mb-4 px-4 py-2  bg-purple-500 text-white rounded-xl "
       >
         <ArrowLeft size={20} />
         Back to Home
