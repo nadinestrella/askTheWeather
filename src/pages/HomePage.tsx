@@ -47,7 +47,7 @@ function HomePage() {
         )}
       </div>
       {/* RecentSearches-- Pc */}
-      <div className="lg:sticky lg:calc(var(--spacing) * 17)">
+      <div className="hidden lg:block lg:sticky lg:top-6)">
         {recentCities.length > 0 && (
           <RecentSearches recentCities={recentCities} onSelect={searchCity} />
         )}

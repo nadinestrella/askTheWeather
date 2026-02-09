@@ -8,7 +8,7 @@ export function RecentSearches({
   onSelect,
 }: RecentSearchesProps) {
   return (
-    <div className="mt-6">
+    <div className="mt-6 bg-white/70 backdrop-blur-sm rounded-3xl p-5 shadow-lg border border-purple-100">
       <h3 className="text-purple-900 mb-2">Recent Searches</h3>
       <div className="flex flex-wrap gap-2">
         {recentCities.map((city) => (
