@@ -1,18 +1,20 @@
 import { Link } from 'react-router-dom';
 import { useWeather } from '../hooks/useWeather';
-import { SearchBar } from '../components/SearchBar';
-import { WeatherDisplay } from '../components/WeatherDisplay';
-import { Loading } from '../components/Loading';
-import { ErrorMessage } from '../components/ErrorMessage';
-import { WelcomeState } from '../components/WelcomeState';
-import { RecentSearches } from '../components/RecentSearches';
+import {
+  ErrorMessage,
+  Loading,
+  RecentSearches,
+  SearchBar,
+  WeatherDisplay,
+  WelcomeState,
+} from '../components';
 
 function HomePage() {
   const { weatherData, error, loading, searchCity, recentCities } =
     useWeather();
 
   return (
-    <div className="flex flex-col lg:flex-row gap-8">
+    <div className="flex flex-col">
       <div>
         <Link
           to="/ia"
@@ -25,8 +27,8 @@ function HomePage() {
           loading={loading}
           buttonText="Search Weather"
         />
-        {/* RecentSearches--Mobile */}
-        <div className="lg:hidden mt-6">
+        {/* RecentCities */}
+        <div className="mt-6">
           {recentCities.length > 0 && (
             <RecentSearches recentCities={recentCities} onSelect={searchCity} />
           )}
@@ -44,12 +46,6 @@ function HomePage() {
         {/* Weather Display */}
         {weatherData && !loading && (
           <WeatherDisplay weatherData={weatherData} />
-        )}
-      </div>
-      {/* RecentSearches-- Pc */}
-      <div className="hidden lg:block lg:sticky lg:top-6)">
-        {recentCities.length > 0 && (
-          <RecentSearches recentCities={recentCities} onSelect={searchCity} />
         )}
       </div>
     </div>

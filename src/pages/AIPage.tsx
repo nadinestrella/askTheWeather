@@ -2,10 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { ArrowLeft } from 'lucide-react';
-import { Loading } from '../components/Loading';
-import { ErrorMessage } from '../components/ErrorMessage';
-import { SearchBar } from '../components/SearchBar';
-import { WelcomeState } from '../components/WelcomeState';
+import { ErrorMessage, Loading, SearchBar, WelcomeState } from '../components';
 
 const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
 
