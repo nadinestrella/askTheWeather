@@ -1,10 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { GoogleGenerativeAI } from '@google/generative-ai';
 import { ArrowLeft } from 'lucide-react';
 import { ErrorMessage, Loading, SearchBar, WelcomeState } from '../components';
-
-const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
 
 function AIPage() {
   const [answer, setAnswer] = useState<string>('');
@@ -19,19 +16,28 @@ function AIPage() {
       setAnswer('');
       setError(null);
 
-      const response = genAI.getGenerativeModel({
-        model: 'gemini-flash-latest',
-        generationConfig: { maxOutputTokens: 40, temperature: 0.7 },
-      });
+      const response = await fetch(
+        'https://ask-the-weather-api.vercel.app/api/generate',
 
-      const prompt = `Tell me the current weather in ${city}. Answer in one short sentence.`;
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ city }),
+        },
+      );
 
-      const result = await response.generateContent(prompt);
-      const text = result.response.text();
-      if (!text) {
-        setError('Empty response from AI. Please try again');
+      if (!response.ok) {
+        throw new Error('Failed to fetch from server');
       }
-      setAnswer(text.replace(/\*\*/g, ''));
+      const data = await response.json();
+      console.log(data);
+
+      if (!data.text) {
+        setError('Empty response from AI. Please try again');
+        return;
+      }
+
+      setAnswer(data.text);
     } catch (error: unknown) {
       setError('Sorry, I could not get the weather right now');
     } finally {
@@ -62,7 +68,7 @@ function AIPage() {
       {error && <ErrorMessage error={error} />}
 
       {/* Loading State */}
-      {loading && <Loading />}
+      {loading && <Loading message="This may take a few seconds" />}
 
       {/* Answer Display */}
       {answer && (
